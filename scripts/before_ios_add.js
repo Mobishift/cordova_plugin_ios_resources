@@ -17,12 +17,13 @@ module.exports = function(context){
 			console.info('copying file to plugin...');
 			for(var i = 0; i < config.RESOURCES.length; i++){
 				if(fs.existsSync(config.RESOURCES[i])){
-					paths = fs.readdirSync(config.RESOURCES[i]);
+					paths = fs.readdirSync(path.join(projectRoot, config.RESOURCES[i]));
 					if(paths.length > 0){
 						for(var j = 0; j < paths.length; j++){
-							if(paths[j] !== '.gitkeep'){
+							if(paths[j].indexOf('.') !== 0){
+								console.info('copying ' + path.join(projectRoot, config.RESOURCES[i], paths[j]) + ' to ' + path.join(filesPath, paths[j]));
 								var target = path.join(filesPath, paths[j]);
-								var origin = path.join(config.RESOURCES[i], paths[j]);
+								var origin = path.join(projectRoot, config.RESOURCES[i], paths[j]);
 								fs.writeFileSync(target, fs.readFileSync(origin));
 								// pathContents.push(TEMPLATE.replace('{{path}}', f));
 							}

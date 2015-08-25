@@ -14,6 +14,7 @@ module.exports = function(context){
 	if(fs.existsSync(configPath)){
 		var config = JSON.parse(fs.readFileSync(configPath, {encoding: 'utf8'}));
 		if(config.RESOURCES){
+			console.info('copying file to plugin...');
 			for(var i = 0; i < config.RESOURCES.length; i++){
 				if(fs.existsSync(config.RESOURCES[i])){
 					paths = fs.readdirSync(config.RESOURCES[i]);
@@ -38,6 +39,7 @@ module.exports = function(context){
 	
 	var pathContents = [];
 	if(paths.length > 0){
+		console.info('setting plugin resources...');
 		for(var i = 0; i < paths.length; i++){
 			var file = ['src', '/ios/', paths[i]].join('');
 			pathContents.push(TEMPLATE.replace('{{path}}', file));

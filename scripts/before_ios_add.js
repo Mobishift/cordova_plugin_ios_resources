@@ -17,6 +17,9 @@ module.exports = function(context){
 				fs.unlinkSync(path.join(filesPath, paths[i]));
 			}
 		}else{
+			if(!fs.existsSync(path.join(pluginPath, 'src'))){
+				fs.mkdirSync(path.join(pluginPath, 'src'));
+			}
 			fs.mkdirSync(filesPath);
 		}
 	};

@@ -16,7 +16,7 @@ cordova plugin add https://github.com/Mobishift/cordova_plugin_ios_resources
 
 ```json
 {
-	"RESOURCES": ["app/sounds", ...]
+	"RESOURCES": ["/somefolder"]
 }
 ```
 
